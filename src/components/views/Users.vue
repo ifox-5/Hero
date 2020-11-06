@@ -3,19 +3,19 @@
     <!-- 面包屑 -->
     <el-breadcrumb
       separator="/"
-      style="padding-left: 8px; padding-bottom: 10px; font-size: 15px"
+      style="padding-left:10x; padding-bottom: 80px; font-size: 20px"
     >
-      <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/layout' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item><a href="/">系统管理</a></el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 用户列表 -->
     <el-card class="box-card">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
-        <el-form-item label="部门" label-width="80px">
-          <el-select v-model="formInline.cities" placeholder="请选择">
+        <el-form-item label="等级" label-width="80px"  style="margin-left:-130px;">
+          <el-select v-model="formInline.grades" placeholder="请选择">
             <el-option
-              v-for="item in cities"
+              v-for="item in grades"
               :key="item.value"
               :label="item.label"
               :value="item.value"
@@ -44,18 +44,18 @@
           <el-radio v-model="formInline.radio" label="2">备选项</el-radio>
           <el-radio v-model="formInline.radio" label="3">备选项</el-radio>
         </el-form-item>
-      </el-form-item>
-        <el-form-item label="昵称" label-width="80px" >
+      
+        <el-form-item label="昵称" label-width="80px">
           <el-input clearable=""
             v-model="formInline.NiChengName"
             placeholder="请输入昵称"
           ></el-input>
         </el-form-item >
-        <el-form-item  style="margin-left:28px;">
+        <el-form-item  style="margin-left:50px;">
         <el-button icon="el-icon-refresh">重置</el-button>
         <el-button type="primary" icon="el-icon-search">查询</el-button>
         <el-button type="success" icon="el-icon-plus">添加</el-button>
-        <el-button type="warning"icon="el-icon-download">导出</el-button>
+        <el-button type="warning" icon="el-icon-download">导出</el-button>
         </el-form-item>
       </el-form>
       <!-- 表格区域 -->
@@ -69,7 +69,7 @@
       width="50">
     </el-table-column>
     <el-table-column
-      prop="username"
+      prop="name"
       label="用户名"
       width="110">
     </el-table-column>
@@ -80,7 +80,7 @@
     </el-table-column>
     <el-table-column
     sortable
-      prop="name"
+      prop="dep"
       label="所属部门"
       width="180">
     </el-table-column>
@@ -109,7 +109,7 @@
       label="操作">
       <el-button type="primary" size="mini" icon="el-icon-edit"></el-button>
       <el-button type="danger"  size="mini" icon="el-icon-delete"></el-button>
-      <el-button type="warning"  size="mini"icon="el-icon-s-tools"></el-button>
+      <el-button type="warning"  size="mini" icon="el-icon-s-tools"></el-button>
     </el-table-column>
   </el-table>
   <el-pagination style="padding-top:15px"
@@ -141,63 +141,68 @@ export default {
       // userList:[],
       //部门集合
       // depList:[],
-      currentPage4:'4',
-      cities: [
+      currentPage4: "4",
+      grades: [
         {
-          value: "Beijing",
-          label: "北京",
+          value: "One",
+          label: "一级",
         },
         {
-          value: "Shanghai",
-          label: "上海",
+          value: "Two",
+          label: "二级",
         },
         {
-          value: "Nanjing",
-          label: "南京",
+          value: "Three",
+          label: "三级",
         },
         {
-          value: "Chengdu",
-          label: "成都",
+          value: "Four",
+          label: "四级",
         },
         {
-          value: "Shenzhen",
-          label: "深圳",
+          value: "Five",
+          label: "五级",
         },
         {
-          value: "Guangzhou",
-          label: "广州",
+          value: "Top",
+          label: "至尊",
         },
       ],
-      userList: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+      userList: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          email: "2012562@qq.com",
+        },
+        {
+          date: "2016-05-04",
+          name: "李小曼",
+           email: "3663562@qq.com",
+        },
+        {
+          date: "2016-05-01",
+          name: "赵小雨",
+           email: "3562012@qq.com",
+        },
+        {
+          date: "2016-05-03",
+          name: "张小可",
+          email: "28965582@qq.com",
+        },
+      ],
     };
   },
   methods: {
     onSubmit() {
       console.log("submit!");
     },
-     handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-      }
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
     },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
+  },
 };
 </script>
 <style scoped>
